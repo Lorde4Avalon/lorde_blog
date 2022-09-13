@@ -19,14 +19,14 @@ const Header = () => {
                         </span>
                     </Link>
                 </div>
-                <div className="md:float-right md:contents">
-                    {categories.map((category) => {
-                        <Link key={category.slug} href={`/category/${category.slug}`}>
-                            <span className='md:float-right mt-2 align-middle text-blue-300 ml-4'>
+                <div className="hidden md:float-left md:contents">
+                    {categories.map((category, index) => {
+                        return <Link key={index} href={`/category/${category.slug}`}>
+                            <span className='cursor-pointer md:float-right mt-2 align-middle text-blue-300 ml-4'>
                                 {category.name}
                             </span>
                         </Link>
-                    }) as ReactNode}
+                    })}
                 </div>
             </div>
         </div>
