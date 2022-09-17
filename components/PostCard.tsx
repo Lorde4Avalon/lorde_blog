@@ -2,8 +2,7 @@ import React from 'react'
 
 type Props = {
     post: {
-        title: String;
-        excerpt: String;
+        [key: string]: any
     }
 }
 
