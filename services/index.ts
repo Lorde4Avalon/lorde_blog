@@ -1,21 +1,36 @@
 import { request, gql } from "graphql-request";
 
-const graphAPI = process.env.CMS_ENDPOINT ?? ''
+const graphAPI = process.env.CMS_ENDPOINT + "/graphql" ?? ''
 const apiToken = process.env.API_TOKEN
 
 const requestHeader = {
-    Authorization: 'Bearer ' + apiToken
+  Authorization: 'Bearer ' + apiToken
 }
 
 export const getPosts = async () => {
-    const query = gql`
+  const query = gql`
     query {
         posts {
           data {
             id
             attributes {
               title
+              slug
               Excerpt
+              author {
+                data {
+                  attributes {
+                    name
+                    avatar {
+                      data {
+                        attributes {
+                          url
+                        }
+                      }
+                    }
+                  }
+                }
+              }
               FeaturedPost
               FeaturedImage {
                 data {
@@ -47,7 +62,7 @@ export const getPosts = async () => {
         
       }
     `
-    const result = await request(graphAPI, query, null, requestHeader)
+  const result = await request(graphAPI, query, null, requestHeader)
 
-    return Object.values(result.posts)
+  return Object.values(result.posts)
 }

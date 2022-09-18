@@ -1,13 +1,10 @@
 import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
+import type { post } from '../types'
 import Head from 'next/head'
 
 import { PostCard, PostWidget, Categories } from '../components'
 import { getPosts } from '../services'
 
-type post = {
-  attributes: Object
-  id:string
-}
 
 const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
   const postsData: post[] = Object.values(posts)
@@ -15,7 +12,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
-        <title>Lorde's Blog</title>
+        <title>Avalon</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
