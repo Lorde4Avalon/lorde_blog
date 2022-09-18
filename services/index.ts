@@ -10,34 +10,12 @@ const requestHeader = {
 export const getPosts = async () => {
     const query = gql`
     query {
-        authors {
-          data {
-            attributes {
-              bio
-              name
-              avatar {
-                data {
-                  attributes {
-                    url
-                  }
-                }
-              }
-            }
-          }
-        }
-        categories {
-          data {
-            id
-            attributes {
-              name
-            }
-          }
-        }
         posts {
           data {
             id
             attributes {
               title
+              Excerpt
               FeaturedPost
               FeaturedImage {
                 data {
@@ -69,6 +47,7 @@ export const getPosts = async () => {
         
       }
     `
+    const result = await request(graphAPI, query, null, requestHeader)
 
-    return await request(graphAPI, query, null, requestHeader)
+    return Object.values(result.posts)
 }

@@ -5,12 +5,13 @@ import { PostCard, PostWidget, Categories } from '../components'
 import { getPosts } from '../services'
 
 type post = {
-  [key: string]: any
+  attributes: Object
+  id:string
 }
 
 const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
-  console.log(posts);
-  
+  const postsData: post[] = Object.values(posts)
+
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -20,8 +21,8 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {posts.map((post: post) => {
-            return <PostCard post={post} key={post.title}></PostCard>
+          {postsData.map((post) => {
+            return <PostCard post={post.attributes} key={post.id}></PostCard>
           })}
         </div>
         <div className="lg:col-span-4 col-span-1">
@@ -36,7 +37,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const posts: [] = (await getPosts()) || []
+  const posts = (await getPosts())[0] || []
   return {
     props: {
       posts
