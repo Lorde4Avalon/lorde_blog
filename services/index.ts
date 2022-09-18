@@ -66,3 +66,29 @@ export const getPosts = async () => {
 
   return Object.values(result.posts)
 }
+
+export const getAuthor = async () => {
+  const query = gql`
+    query {
+      author(id: 1) {
+        data {
+          attributes {
+            bio
+            name
+            avatar {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
+        }
+      } 
+    }
+  `
+
+  const result = await request(graphAPI, query, null, requestHeader)
+
+  return result
+}

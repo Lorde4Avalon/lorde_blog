@@ -2,7 +2,7 @@ import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
 import type { post } from '../types'
 import Head from 'next/head'
 
-import { PostCard, PostWidget, Categories } from '../components'
+import { PostCard, PersonalWidget, PostWidget, Categories } from '../components'
 import { getPosts } from '../services'
 
 
@@ -24,6 +24,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
+            <PersonalWidget  />
             <PostWidget />
             <Categories />
           </div>
