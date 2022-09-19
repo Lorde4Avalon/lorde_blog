@@ -24,6 +24,15 @@ const PersonalWidget = () => {
       <p className='text-center mt-1 text-lg'>
         {author.name}
       </p>
+      <div className="flex justify-center items-center p-2 font-sans text-lg font-medium">
+        <div className="inline-block mx-6 cursor-pointer">
+          GitHub
+        </div>
+        <div className="inline-block mx-6 cursor-pointer">Subscript</div>
+      </div>
+      <p className='text-center text-lg font-normal pt-6'>
+        Thinking for rationality, Working for liberty.
+      </p>
     </div>
   )
 }
