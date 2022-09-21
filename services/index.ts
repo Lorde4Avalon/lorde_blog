@@ -31,7 +31,6 @@ export const getPosts = async () => {
                   }
                 }
               }
-              FeaturedPost
               FeaturedImage {
                 data {
                   attributes {
@@ -67,6 +66,32 @@ export const getPosts = async () => {
   return Object.values(result.posts)
 }
 
+export const getPostDetail = async (slug: string) => {
+  const query = gql`
+    query {
+      posts(filters: { slug: {eq: "${slug}"} } ) {
+        data {
+          attributes {
+            Content
+            FeaturedImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+            createdAt
+            updatedAt
+          }
+        }
+      }
+    }
+  `
+
+  const result = await request(graphAPI, query, null, requestHeader)
+  return result.post.data.attributes
+}
+
 export const getAuthor = async () => {
   const query = gql`
     query {
@@ -90,5 +115,5 @@ export const getAuthor = async () => {
 
   const result = await request(graphAPI, query, null, requestHeader)
 
-  return result
+  return result.author.data.attributes
 }

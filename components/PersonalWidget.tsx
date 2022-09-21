@@ -10,7 +10,7 @@ const PersonalWidget = () => {
 
   useEffect(() => {
     getAuthor().then((result) => {
-      setAuthor(result.author.data.attributes);
+      setAuthor(result);
     })
   }, [])
 
@@ -30,7 +30,9 @@ const PersonalWidget = () => {
           </svg>
           GitHub
         </a>
-        <div className="inline-block mx-3 cursor-pointer">Subscript</div>
+        <div className="inline-block mx-3 cursor-pointer">
+          Subscript
+        </div>
       </div>
       <p className='text-center text-lg font-normal pt-6'>
         {author.bio}
