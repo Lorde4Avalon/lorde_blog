@@ -7,7 +7,7 @@ import { getPosts } from '../services'
 
 
 const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
-  const postsData: post[] = Object.values(posts)
+  const postsData: post[] = posts.data
 
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -24,7 +24,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
-            <PersonalWidget  />
+            <PersonalWidget />
             <PostWidget />
             <Categories />
           </div>
@@ -35,7 +35,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const posts = (await getPosts())[0] || []
+  const posts = (await getPosts()) || []
   return {
     props: {
       posts

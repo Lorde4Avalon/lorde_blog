@@ -6,7 +6,17 @@ import { getAuthor } from '../services'
 const host = process.env.CMS_ENDPOINT
 
 const PersonalWidget = () => {
-  const [author, setAuthor] = useState<author>({})
+  const [author, setAuthor] = useState<author>({
+    name: '',
+    bio: '',
+    avatar: {
+      data: {
+        attributes: {
+          url: ''
+        }
+      }
+    }
+  })
 
   useEffect(() => {
     getAuthor().then((result) => {

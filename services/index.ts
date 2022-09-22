@@ -1,4 +1,5 @@
 import { request, gql } from "graphql-request";
+import type { post } from '../types'
 
 const graphAPI = process.env.CMS_ENDPOINT + "/graphql" ?? ''
 const apiToken = process.env.API_TOKEN
@@ -63,10 +64,10 @@ export const getPosts = async () => {
     `
   const result = await request(graphAPI, query, null, requestHeader)
 
-  return Object.values(result.posts)
+  return result.posts
 }
 
-export const getPostDetail = async (slug: string) => {
+export const getPostDetail = async (slug: string | string[] | undefined) => {
   const query = gql`
     query {
       posts(filters: { slug: {eq: "${slug}"} } ) {
@@ -89,7 +90,7 @@ export const getPostDetail = async (slug: string) => {
   `
 
   const result = await request(graphAPI, query, null, requestHeader)
-  return result.post.data.attributes
+  return result.posts
 }
 
 export const getAuthor = async () => {
