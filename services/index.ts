@@ -73,6 +73,7 @@ export const getPostDetail = async (slug: string | string[] | undefined) => {
       posts(filters: { slug: {eq: "${slug}"} } ) {
         data {
           attributes {
+            title
             Content
             FeaturedImage {
               data {
