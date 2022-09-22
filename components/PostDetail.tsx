@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 import moment from 'moment'
 
@@ -27,7 +28,7 @@ const PostDetail = ({ post }: Props) => {
         <span className="align-middle">{moment(post.updatedAt).format('MMM DD, YYYY')}</span>
       </div>
       <div className="p-3">
-        <ReactMarkdown children={post.Content}></ReactMarkdown>
+        <ReactMarkdown children={post.Content} remarkPlugins={[remarkGfm]}></ReactMarkdown>
       </div>
     </div>
   )
