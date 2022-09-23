@@ -12,7 +12,7 @@ const PostPage: NextPage = ({ post }: InferGetStaticPropsType<GetStaticProps>) =
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="col-span-1 lg:col-span-8">
           <PostDetail post={post.data[0].attributes} />
-          <CommentsForm />
+          <CommentsForm post={post.data[0]}/>
           <Comments />
         </div>
         <div className="col-span-1 lg:col-span-4">

@@ -72,6 +72,7 @@ export const getPostDetail = async (slug: string | string[] | undefined) => {
     query {
       posts(filters: { slug: {eq: "${slug}"} } ) {
         data {
+          id
           attributes {
             title
             Content
@@ -118,4 +119,38 @@ export const getAuthor = async () => {
   const result = await request(graphAPI, query, null, requestHeader)
 
   return result.author.data.attributes
+}
+
+export const addComment = async (commentObj: Object) => {
+  const query = gql`
+    mutation createComment {
+      createComment(data: ${JSON.stringify(commentObj).replace(/"([^"]+)":/g, '$1:')}) {
+        data {
+          id
+          attributes {
+            name
+            email
+            comment
+            post {
+              data {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+  const result = await request(graphAPI, query, null, requestHeader)
+
+  const res = {
+    createComment: false
+  }
+
+  if (result) {
+    res.createComment = true
+    return res
+  }
+
+  return res
 }
