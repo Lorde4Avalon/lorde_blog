@@ -32,3 +32,12 @@ export interface author {
         }
     }
 }
+
+export type comment = {
+    attributes: {
+        name: string
+        email?: string
+        comment: string
+        createdAt: any
+    }
+}

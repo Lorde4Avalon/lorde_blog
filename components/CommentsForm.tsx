@@ -70,7 +70,7 @@ const CommentsForm = ({ post }: Props) => {
 
         setFormData({ ...formData })
         setSuccessMsg(true)
-        setInterval(() => setSuccessMsg(false), 3000)
+        setInterval(() => setSuccessMsg(false), 6000)
       }
     })
 

@@ -95,6 +95,34 @@ export const getPostDetail = async (slug: string | string[] | undefined) => {
   return result.posts
 }
 
+export const getPostComments = async (slug: string | string[] | undefined) => {
+  const query = gql`
+    query {
+      posts(filters: { slug: {eq: "${slug}"} } ) {
+        data {
+          id
+          attributes {
+            comments {
+              data {
+                attributes {
+                  name
+                  email
+                  comment
+                  createdAt
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `
+  
+  const result = await request(graphAPI, query, null, requestHeader)
+  
+  return result.posts.data[0].attributes.comments.data
+}
+
 export const getAuthor = async () => {
   const query = gql`
     query {
