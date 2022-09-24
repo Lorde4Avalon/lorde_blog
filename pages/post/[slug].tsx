@@ -4,8 +4,14 @@ import type { post } from '../../types'
 
 import { PersonalWidget, PostDetail, CommentsForm, Comments } from '../../components'
 import { getPosts, getPostDetail, getPostComments } from '../../services'
+import { useRouter } from 'next/router'
 
 const PostPage: NextPage = ({ post, comments }: InferGetStaticPropsType<GetStaticProps>) => {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div className='flex justify-center items-center text-xl font-semibold'>Loading......</div>
+  }
 
   return (
     <div className="container mx-auto px-10 mb-8">

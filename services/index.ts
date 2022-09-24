@@ -3,6 +3,7 @@ import type { post } from '../types'
 
 const graphAPI = process.env.CMS_ENDPOINT + "/graphql" ?? ''
 const apiToken = process.env.API_TOKEN
+const pageSize: number = 4
 
 const requestHeader = {
   Authorization: 'Bearer ' + apiToken
@@ -117,9 +118,9 @@ export const getPostComments = async (slug: string | string[] | undefined) => {
       }
     }
   `
-  
+
   const result = await request(graphAPI, query, null, requestHeader)
-  
+
   return result.posts.data[0].attributes.comments.data
 }
 

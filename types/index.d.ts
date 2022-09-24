@@ -34,6 +34,7 @@ export interface author {
 }
 
 export type comment = {
+    id: number
     attributes: {
         name: string
         email?: string

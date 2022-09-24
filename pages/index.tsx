@@ -2,12 +2,16 @@ import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
 import type { post } from '../types'
 import Head from 'next/head'
 
-import { PostCard, PersonalWidget, PostWidget, RelateWidget, Categories } from '../components'
+import { PostCard, PersonalWidget, PostWidget, RelateWidget, Categories, Pagination } from '../components'
 import { getPosts } from '../services'
+import { useState } from 'react'
 
+const pageSize = process.env.PER_PAGESIZE
 
 const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
   const postsData: post[] = posts.data
+
+  const [currentPage, setCurrentPage] = useState(1)
 
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -21,6 +25,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
           {postsData.map((post) => {
             return <PostCard post={post.attributes} key={post.id}></PostCard>
           })}
+          {posts.meta.pagination.pageCount > 1 && <Pagination pagination={posts.meta.pagination} />}
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
