@@ -41,6 +41,7 @@ const PersonalWidget = () => {
           GitHub
         </a>
         <div className="inline-block mx-3 cursor-pointer">
+         
           Subscript
         </div>
       </div>
