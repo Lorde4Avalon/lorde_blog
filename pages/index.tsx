@@ -6,12 +6,25 @@ import { PostCard, PersonalWidget, PostWidget, RelateWidget, Categories, Paginat
 import { getPosts } from '../services'
 import { useState } from 'react'
 
-const pageSize = process.env.PER_PAGESIZE
+const pageSize = 3
 
 const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
   const postsData: post[] = posts.data
 
   const [currentPage, setCurrentPage] = useState(1)
+
+  const firstPageIndex = (currentPage - 1) * pageSize
+  const lastPageIndex = firstPageIndex + pageSize
+  const pageCount = Math.ceil(postsData.length / pageSize)
+  const pagination = {
+    pageCount,
+    currentPage
+  }
+
+
+
+  const currentData = postsData.slice(firstPageIndex, lastPageIndex)
+
 
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -22,10 +35,11 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {postsData.map((post) => {
+          {currentData.map((post) => {
             return <PostCard post={post.attributes} key={post.id}></PostCard>
           })}
-          {posts.meta.pagination.pageCount > 1 && <Pagination pagination={posts.meta.pagination} />}
+          {postsData.length > currentData.length &&
+            <Pagination pagination={pagination} onPageChange={(page: number) => setCurrentPage(page)} />}
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
