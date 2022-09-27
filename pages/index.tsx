@@ -16,15 +16,13 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
   const firstPageIndex = (currentPage - 1) * pageSize
   const lastPageIndex = firstPageIndex + pageSize
   const pageCount = Math.ceil(postsData.length / pageSize)
+
   const pagination = {
     pageCount,
     currentPage
   }
 
-
-
   const currentData = postsData.slice(firstPageIndex, lastPageIndex)
-
 
   return (
     <div className="container mx-auto px-10 mb-8">
