@@ -34,14 +34,20 @@ const PostPage: NextPage = ({ post, comments }: InferGetStaticPropsType<GetStati
 export default PostPage
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = await getPostDetail(params.slug)
-  const comments = await getPostComments(params.slug)
+  if (params) {
+    const post = await getPostDetail(params.slug)
+    const comments = await getPostComments(params.slug)
+
+    return {
+      props: {
+        post: post,
+        comments: comments
+      }
+    }
+  }
 
   return {
-    props: {
-      post: post,
-      comments: comments
-    }
+    props: { error: true }
   }
 }
 
