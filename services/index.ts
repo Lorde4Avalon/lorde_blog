@@ -170,16 +170,22 @@ export const addComment = async (commentObj: Object) => {
       }
     }
   `
-  const result = await request(graphAPI, query, null, requestHeader)
 
   const res = {
-    createComment: false
+    createComment: false,
+    errMessage: null
   }
 
-  if (result) {
-    res.createComment = true
+  try {
+    const result = await request(graphAPI, query, null, requestHeader)
+
+    if (result) {
+      res.createComment = true
+    }
     return res
-  }
+  } catch (err: any) {
+    res.errMessage = err.response.errors[0].message
+    return res
+  };
 
-  return res
 }
