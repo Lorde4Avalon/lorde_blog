@@ -12,7 +12,7 @@ const requestHeader = {
 export const getPosts = async () => {
   const query = gql`
     query {
-        posts {
+        posts (sort: "createdAt:desc") {
           data {
             id
             attributes {
