@@ -10,7 +10,7 @@ const PostPage: NextPage = ({ post, comments }: InferGetStaticPropsType<GetStati
   const router = useRouter()
 
   if (router.isFallback) {
-    return <div className='flex justify-center items-center text-xl font-semibold'>Loading......</div>
+    return <div className='flex justify-center items-center text-xl font-semibold text-white'>Loading......</div>
   }
 
   return (

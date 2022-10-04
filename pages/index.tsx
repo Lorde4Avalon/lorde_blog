@@ -33,9 +33,11 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
+          {/* render posts */}
           {currentData.map((post) => {
-            return <PostCard post={post.attributes} key={post.id}></PostCard>
+            return <PostCard post={post.attributes} key={post.id} />
           })}
+          {/* show pagination at totalCount > pageSize */}
           {postsData.length > currentData.length &&
             <Pagination pagination={pagination} onPageChange={(page: number) => setCurrentPage(page)} />}
         </div>
