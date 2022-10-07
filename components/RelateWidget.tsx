@@ -19,6 +19,11 @@ const RelateWidget = () => {
                     Fronz
                 </div>
             </a>
+            <a href="http://blog.coderwdd.top/" target="_blank">
+                <div className="m-3 cursor-pointer rounded-full ease-out hover:bg-blue-600 transition duration-700 hover:-translate-y-1 bg-zinc-700 text-white text-center text-lg">
+                    CoderWdd
+                </div>
+            </a>
         </div>
     )
 }
