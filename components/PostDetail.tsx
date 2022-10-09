@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-
+import rehypeRaw from 'rehype-raw';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import moment from 'moment'
 
 interface Props {
@@ -12,8 +14,29 @@ interface Props {
 
 const host = process.env.CMS_ENDPOINT
 
-const PostDetail = ({ post }: Props) => {
+const CodeBlock = {
+  code({ node, inline, className, children, ...props } : any) {
+    const match = /language-(\w+)/.exec(className || '');
+    return !inline && match ? (
+      <SyntaxHighlighter
+        style={vscDarkPlus}
+        language={match[1]}
+        PreTag="div"
+        {...props}
+      >
+        {String(children).replace(/\n$/, '')}
+      </SyntaxHighlighter>
+    ) : (
+      <code className={className} {...props}>
+        {children}
+      </code>
+    );
+  },
+};
 
+
+const PostDetail = ({ post }: Props) => {
+  
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
@@ -28,7 +51,10 @@ const PostDetail = ({ post }: Props) => {
         <span className="align-middle">{moment(post.createdAt).format('MMM DD, YYYY')}</span>
       </div>
       <div className="p-3">
-        <ReactMarkdown children={post.Content} remarkPlugins={[remarkGfm]}></ReactMarkdown>
+
+        <ReactMarkdown linkTarget="_blank" components={CodeBlock} remarkPlugins={[remarkGfm]}>
+          {post.Content}
+        </ReactMarkdown>
       </div>
     </div>
   )
