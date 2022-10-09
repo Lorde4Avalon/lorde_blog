@@ -15,11 +15,12 @@ interface Props {
 const host = process.env.CMS_ENDPOINT
 
 const CodeBlock = {
-  code({ node, inline, className, children, ...props } : any) {
+  code({ node, inline, className, children, ...props }: any) {
     const match = /language-(\w+)/.exec(className || '');
     return !inline && match ? (
       <SyntaxHighlighter
         style={vscDarkPlus}
+        customStyle={{"border-radius": "0.5rem"}}
         language={match[1]}
         PreTag="div"
         {...props}
@@ -36,7 +37,7 @@ const CodeBlock = {
 
 
 const PostDetail = ({ post }: Props) => {
-  
+
 
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
