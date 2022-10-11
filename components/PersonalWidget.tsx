@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 import type { author } from '../types'
-import { getAuthor } from '../services'
 
+interface Props {
+  author: author
+}
 const host = process.env.CMS_ENDPOINT
 
-const PersonalWidget = () => {
-  const [author, setAuthor] = useState<author>({
-    name: '',
-    bio: '',
-    avatar: {
-      data: {
-        attributes: {
-          url: ''
-        }
-      }
-    }
-  })
-
-  useEffect(() => {
-    getAuthor().then((result) => {
-      setAuthor(result);
-    })
-  }, [])
+const PersonalWidget = ({author} : Props) => {
 
   return (
     <div className=" bg-white rounded-lg shadow-lg p-8 mb-8">

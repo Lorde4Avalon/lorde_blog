@@ -2,12 +2,12 @@ import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
 import type { post } from '../types'
 
 import { PostCard, PersonalWidget, PostWidget, RelateWidget, Categories, Pagination } from '../components'
-import { getPosts } from '../services'
+import { getAuthor, getPosts } from '../services'
 import { useState } from 'react'
 
 const pageSize = 3
 
-const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
+const Home: NextPage = ({ posts, author }: InferGetStaticPropsType<GetStaticProps>) => {
   const postsData: post[] = posts.data
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -22,6 +22,7 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
   }
 
   const currentData = postsData.slice(firstPageIndex, lastPageIndex)
+  const recentData = postsData.slice(0, 6);
 
   return (
     <div className="container mx-auto px-10 mb-8">
@@ -38,10 +39,10 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
         </div>
         <div className="lg:col-span-4 col-span-1">
           <div className="lg:sticky relative top-8">
-            <PersonalWidget />
+            <PersonalWidget author={author}/>
+            <PostWidget posts={recentData}/>
             <RelateWidget />
-            {/* <PostWidget />
-            <Categories /> */}
+            {/* <Categories /> */}
           </div>
         </div>
       </div>
@@ -51,9 +52,11 @@ const Home: NextPage = ({ posts }: InferGetStaticPropsType<GetStaticProps>) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const posts = (await getPosts()) || []
+  const author = await getAuthor()
   return {
     props: {
-      posts
+      posts,
+      author
     }
   }
 }

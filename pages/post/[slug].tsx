@@ -3,10 +3,10 @@ import React from 'react'
 import type { post } from '../../types'
 
 import { PersonalWidget, PostDetail, CommentsForm, Comments } from '../../components'
-import { getPosts, getPostDetail, getPostComments } from '../../services'
+import { getPosts, getPostDetail, getPostComments, getAuthor } from '../../services'
 import { useRouter } from 'next/router'
 
-const PostPage: NextPage = ({ post, comments }: InferGetStaticPropsType<GetStaticProps>) => {
+const PostPage: NextPage = ({ post, comments, author }: InferGetStaticPropsType<GetStaticProps>) => {
   const router = useRouter()
 
   if (router.isFallback) {
@@ -23,7 +23,7 @@ const PostPage: NextPage = ({ post, comments }: InferGetStaticPropsType<GetStati
         </div>
         <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky top-8">
-            <PersonalWidget />
+            <PersonalWidget author={author}/>
           </div>
         </div>
       </div>
@@ -37,11 +37,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (params) {
     const post = await getPostDetail(params.slug)
     const comments = await getPostComments(params.slug)
-
+    const author = await getAuthor()
     return {
       props: {
         post: post,
-        comments: comments
+        comments: comments,
+        author
       }
     }
   }

@@ -68,6 +68,31 @@ export const getPosts = async () => {
   return result.posts
 }
 
+// export const getRecentPosts = async () => {
+//   const query = gql`
+//     query {
+//       posts(pagination: { limit: 5 }, sort: {"createdAt:desc"}) {
+//         data {
+//           attributes {
+//             title
+//             slug
+//             FeaturedImage {
+//               data {
+//                 attributes {
+//                   url
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       } 
+//     }
+//   `
+
+//   const result = await request(graphAPI, query, null, requestHeader)
+//   return result.posts
+// }
+
 export const getPostDetail = async (slug: string | string[] | undefined) => {
   const query = gql`
     query {
