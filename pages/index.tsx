@@ -22,7 +22,7 @@ const Home: NextPage = ({ posts, author }: InferGetStaticPropsType<GetStaticProp
   }
 
   const currentData = postsData.slice(firstPageIndex, lastPageIndex)
-  const recentData = postsData.slice(0, 6);
+  const recentData = postsData.slice(0, 5); // display 4 recent posts
 
   return (
     <div className="container mx-auto px-10 mb-8">
