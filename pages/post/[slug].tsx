@@ -15,17 +15,17 @@ const PostPage: NextPage = ({ post, comments, author }: InferGetStaticPropsType<
 
   return (
     <div className="container mx-auto px-10 mb-8">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="col-span-1 lg:col-span-8">
+      <div className="grid lg:grid-cols-12 grid-cols-1 gap-12">
+        <div className="lg:col-start-2 lg:col-span-10 col-span-1">
           <PostDetail post={post.data[0].attributes} />
           <CommentsForm post={post.data[0]} />
           {comments.length > 0 && <Comments comments={comments} />}
         </div>
-        <div className="col-span-1 lg:col-span-4">
+        {/* <div className="col-span-1 lg:col-span-4">
           <div className="relative lg:sticky top-8">
             <PersonalWidget author={author}/>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
