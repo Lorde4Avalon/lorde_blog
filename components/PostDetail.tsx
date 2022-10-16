@@ -53,7 +53,7 @@ const PostDetail = ({ post }: Props) => {
       </div>
       <div className="p-3">
 
-        <ReactMarkdown linkTarget="_blank" components={CodeBlock} remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown linkTarget="_blank" components={CodeBlock} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
           {post.Content}
         </ReactMarkdown>
       </div>

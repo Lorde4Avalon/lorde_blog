@@ -2,23 +2,21 @@
 
 @layer base {
   h1 {
-    @apply text-2xl;
-    @apply font-bold;
+    @apply text-2xl font-bold;
   }
 
   h2 {
-    @apply text-xl;
-    @apply font-bold;
+    @apply text-xl font-bold;
   }
 
   h3 {
-    @apply text-lg;
-    @apply font-bold;
+    @apply text-lg font-bold;
   }
 
-  // a {
-  //   @apply text-blue-600 underline;
-  // }
+  menu, ol, ul {
+    @apply list-decimal p-0 ml-5;
+  }
+
 }
 
 @tailwind components;
@@ -83,6 +81,7 @@ a {
   text-decoration: none;
 }
 
+//quote style
 blockquote {
   border-left: 0.3rem solid;
   padding-left: 0.6rem;
