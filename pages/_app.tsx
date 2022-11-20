@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Avalon</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" href='_next/static/media/bg_4-min.db587154.jpg' as="image" />
       </Head>
       <Layout>
         <Component {...pageProps} />

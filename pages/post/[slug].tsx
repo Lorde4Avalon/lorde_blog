@@ -43,7 +43,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         post: post,
         comments: comments,
         author
-      }
+      },
+      revalidate: 60
     }
   }
 
