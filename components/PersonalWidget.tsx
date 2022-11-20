@@ -26,8 +26,7 @@ const PersonalWidget = ({author} : Props) => {
           GitHub
         </a>
         <div className="inline-block mx-3 cursor-pointer">
-         
-          Subscript
+          Subscribe
         </div>
       </div>
       <p className='text-center text-lg font-normal pt-6'>
