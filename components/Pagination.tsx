@@ -39,7 +39,7 @@ const Pagination = ({ pagination, onPageChange }: Props) => {
                         return <a
                             onClick={() => onPageChange(pageIndex)}
                             aria-current="page"
-                            className="cursor-pointer relative z-10 inline-flex items-center border border-indigo-500 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-600 focus:z-20"
+                            className="caret-transparent cursor-pointer relative z-10 inline-flex items-center border border-indigo-500 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-600 focus:z-20"
                         >
                             {pageIndex}
                         </a>
@@ -47,7 +47,7 @@ const Pagination = ({ pagination, onPageChange }: Props) => {
                     return <a
                         onClick={() => onPageChange(pageIndex)}
                         aria-current="page"
-                        className="cursor-pointer relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 focus:z-20"
+                        className="caret-transparent cursor-pointer relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 focus:z-20"
                     >
                         {pageIndex}
                     </a>
