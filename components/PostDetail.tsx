@@ -51,7 +51,7 @@ const PostDetail = ({ post }: Props) => {
         </svg>
         <span className="align-middle">{moment(post.createdAt).format('MMM DD, YYYY')}</span>
       </div>
-      <div className="p-3">
+      <div className="p-3 text-lg tracking-tight">
 
         <ReactMarkdown linkTarget="_blank" components={CodeBlock} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
           {post.Content}
